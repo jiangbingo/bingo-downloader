@@ -30,7 +30,8 @@ async function initDB(): Promise<void> {
     await fs.access(DB_SQLITE_PATH);
   } catch {
     // Create empty database
-    await fs.writeFile(DB_SQLITE_PATH, JSON.stringify({ downloads: [] }), 'utf-8');
+    const jsonData = JSON.stringify({ downloads: [] });
+    await fs.writeFile(DB_SQLITE_PATH, jsonData, 'utf-8');
   }
 }
 

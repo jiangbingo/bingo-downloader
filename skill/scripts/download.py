@@ -13,12 +13,26 @@ Usage:
 
 import argparse
 import json
+import logging
 import sqlite3
 import sys
 import time
 from datetime import datetime
 from pathlib import Path
 from typing import Optional, List, Dict, Any
+
+# Configure logging
+LOG_FILE = Path.home() / '.yt-dlp-download.log'
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s [%(levelname)s] %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S',
+    handlers=[
+        logging.FileHandler(LOG_FILE),
+        logging.StreamHandler(sys.stderr)  # Also output to stderr
+    ]
+)
+logger = logging.getLogger(__name__)
 
 try:
     import yt_dlp
@@ -849,6 +863,9 @@ class BingoDownloader:
         # Detect platform
         platform = self.detect_platform(url)
 
+        # Log download start
+        logger.info(f"Download started: URL={url} Platform={platform}")
+
         # Auto-use cookies for YouTube if not specified
         if platform == 'YouTube' and not self.cookies_browser:
             self.cookies_browser = DEFAULT_COOKIES_BROWSER
@@ -920,6 +937,9 @@ class BingoDownloader:
                 print(f"\n  ✓ Download complete!")
                 print(f"  Files saved to: {self.download_path}")
 
+            # Log success
+            logger.info(f"Download completed: URL={url} Path={self.download_path}")
+
             # 记录下载历史
             try:
                 # 获取视频信息用于历史记录
@@ -942,6 +962,9 @@ class BingoDownloader:
                 pass
 
         except Exception as e:
+            # Log failure
+            logger.error(f"Download failed: URL={url} Error={e}")
+
             # 记录失败的下载
             try:
                 self.history.record_download(

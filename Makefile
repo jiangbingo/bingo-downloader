@@ -18,6 +18,8 @@ help:
 	@echo "  make dev-web           - Run Web UI in dev mode (hot reload)"
 	@echo "  make test              - Run all tests"
 	@echo "  make test-web          - Run Web UI tests"
+	@echo "  make test-download     - Download test videos"
+	@echo "  make test-download-url - Test with custom URL"
 	@echo ""
 	@echo "Documentation:"
 	@echo "  make docs-serve        - Serve documentation locally"
@@ -69,7 +71,7 @@ install-web:
 	@echo "Creating virtual environment in web/backend/.venv..."
 	@cd web/backend && uv venv .venv
 	@echo "Installing dependencies..."
-	@cd web/backend && .venv/bin/pip install -r requirements.txt
+	@cd web/backend && uv pip install -r requirements.txt
 	@echo "✓ Web UI dependencies installed"
 	@echo ""
 	@echo "Run with: make run-web"
@@ -120,6 +122,39 @@ check:
 	@which node || (echo "✗ Node.js not found" && exit 1)
 	@echo "✓ All dependencies OK"
 
+# Test download - Download sample videos for testing
+.PHONY: test-download
+test-download:
+	@echo "Downloading test videos..."
+	@mkdir -p tests/samples
+	@echo "Downloading YouTube test video..."
+	@cd tests/samples && yt-dlp --newline --no-color -f "b" --max-filesize 10M -o "youtube_test.%(ext)s" "https://www.youtube.com/watch?v=jNQXAC9IVRw" || echo "  ✗ YouTube download failed (may need VPN or cookies)"
+	@echo ""
+	@echo "✓ Test download complete!"
+	@echo "Samples saved to: tests/samples/"
+	@ls -lh tests/samples/ 2>/dev/null | tail -n +2 || echo "  No samples downloaded"
+	@echo ""
+	@echo "Tip: Use with your own URL:"
+	@echo "  yt-dlp -f b \"YOUR_URL\" -o downloads/video.%(ext)s"
+	@echo ""
+
+# Test download with custom URL
+.PHONY: test-download-url
+test-download-url:
+	@read -p "Enter video URL: " url; \
+	mkdir -p tests/samples; \
+	echo ""; \
+	echo "Downloading from: $$url"; \
+	cd tests/samples && yt-dlp --newline -f "b" -o "custom_test.%(ext)s" "$$url" || echo "  ✗ Download failed"; \
+	ls -lh tests/samples/
+
+# Clean test samples
+.PHONY: clean-test
+clean-test:
+	@echo "Cleaning test samples..."
+	@rm -rf tests/samples
+	@echo "✓ Test samples cleaned"
+
 # Version update
 .PHONY: version
 version:
@@ -157,7 +192,7 @@ docs-build:
 
 # Clean
 .PHONY: clean
-clean:
+clean: clean-test
 	@echo "Cleaning MCP Server..."
 	@cd mcp && rm -rf dist
 	@echo "Cleaning Web UI..."

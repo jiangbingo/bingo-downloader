@@ -18,8 +18,8 @@
 
 ```bash
 # 1. 语法检查
-python3 -m py_compile scripts/download.py
-bash -n scripts/download.sh
+python3 -m py_compile skill/scripts/download.py
+bash -n skill/scripts/download.sh
 
 # 2. 测试安装（在另一个目录）
 cd /tmp && git clone <your-repo-url> test-skill && cd test-skill

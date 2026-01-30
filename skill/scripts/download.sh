@@ -65,6 +65,11 @@ RETRYABLE_PATTERNS=(
 # Configuration file support
 CONFIG_FILE="${HOME}/.yt-dlp.conf"
 
+# Log file
+LOG_FILE="${HOME}/.yt-dlp-download.log"
+LOG_DIR="$(dirname "$LOG_FILE")"
+mkdir -p "$LOG_DIR"
+
 # Load config file if exists
 if [[ -f "$CONFIG_FILE" ]]; then
     # shellcheck source=/dev/null
@@ -74,6 +79,50 @@ fi
 # ============================================
 # Helper functions
 # ============================================
+
+# Logging functions
+log_message() {
+    local level="$1"
+    shift
+    local message="$*"
+    local timestamp
+    timestamp="$(date '+%Y-%m-%d %H:%M:%S')"
+    echo "[$timestamp] [$level] $message" >> "$LOG_FILE"
+}
+
+log_info() {
+    log_message "INFO" "$@"
+}
+
+log_success() {
+    log_message "SUCCESS" "$@"
+}
+
+log_warning() {
+    log_message "WARNING" "$@"
+}
+
+log_error() {
+    log_message "ERROR" "$@"
+}
+
+log_download_start() {
+    local url="$1"
+    local options="$2"
+    log_info "Download started: URL=$url Options=$options"
+}
+
+log_download_success() {
+    local url="$1"
+    local output="$2"
+    log_success "Download completed: URL=$url Output=$output"
+}
+
+log_download_failed() {
+    local url="$1"
+    local error="$2"
+    log_error "Download failed: URL=$url Error=$error"
+}
 
 print_header() {
     echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${NC}"
@@ -618,11 +667,17 @@ print_header "Starting Download"
 print_info "Command: $CMD"
 echo ""
 
+# Log download start
+log_download_start "$URL" "Quality=${QUALITY:-Best} Audio=${AUDIO_ONLY} Subs=${DOWNLOAD_SUBS}"
+
 if execute_with_retry "$CMD"; then
     echo ""
     print_header "Download Complete!"
     print_success "Files saved to: ${GREEN}$DOWNLOAD_PATH${NC}"
     echo ""
+
+    # Log success
+    log_download_success "$URL" "$DOWNLOAD_PATH"
 
     # Show downloaded files
     print_info "Downloaded files:"
@@ -633,6 +688,9 @@ else
     print_header "Download Failed"
     print_error "Exit code: $exit_code"
 
+    # Log failure
+    log_download_failed "$URL" "Exit code: $exit_code"
+
     # Provide troubleshooting hints
     echo ""
     print_info "Troubleshooting tips:"
@@ -640,6 +698,7 @@ else
     echo "  • Try with cookies: -c chrome"
     echo "  • Check the URL is valid"
     echo "  • List available formats: -l"
+    echo "  • Check log file: $LOG_FILE"
 
     exit $exit_code
 fi

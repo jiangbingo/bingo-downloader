@@ -96,3 +96,19 @@ cookies.json
 *.srt
 *.vtt
 *.ass
+
+# Test samples (downloaded videos for testing)
+tests/samples/
+*.mp4
+*.mkv
+*.avi
+*.webm
+*.flv
+
+# Claude Code local configuration
+.claude/
+
+# Development notes (internal use only)
+RESTRUCTURE_NOTES.md
+NOTES.md
+TODO.md

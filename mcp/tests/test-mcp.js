@@ -165,7 +165,7 @@ class MCPTester {
 }
 
 // 运行测试
-const tester = new MCPTester('../dist/index.js');
+const tester = new MCPTester('./dist/index.js');
 tester.runTests().catch(error => {
   console.error('❌ Test failed:', error);
   process.exit(1);
