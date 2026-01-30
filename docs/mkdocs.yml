@@ -1,0 +1,99 @@
+site_name: Bingo Downloader
+site_description: A powerful video downloader with MCP Server and Skills
+site_author: jiangbingo
+site_url: https://jiangbingo.github.io/bingo-downloader/
+repo_url: https://github.com/jiangbingo/bingo-downloader
+repo_name: jiangbingo/bingo-downloader
+
+# Navigation
+nav:
+  - Home:
+    - index.md
+    - Quick Start: guide/quick-start.md
+  - Installation:
+    - Dependencies: installation/dependencies.md
+    - MCP Server: installation/mcp-server.md
+  - Usage Guide:
+    - Usage: guide/usage.md
+  - API Reference:
+    - download.md
+  - Examples:
+    - examples/index.md
+  - Troubleshooting:
+    - troubleshooting/index.md
+
+# Theme
+theme:
+  name: material
+  language: en
+  palette:
+    - scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - toc.follow
+    - content.code.copy
+    - content.code.annotate
+
+# Plugins
+plugins:
+  - search:
+      lang:
+        - en
+        - zh
+  - minify
+  - git-revision-date-localized:
+      type: time
+      timezone: Asia/Shanghai
+      locale: en
+      fallback_to_build_date: true
+
+# Markdown extensions
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
+  - footnotes
+  - toc:
+      permalink: true
+
+# Extra
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/jiangbingo/bingo-downloader
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/jiangbingo
+  version:
+    provider: mike
+    default: latest
+
+# Copyright
+copyright: Copyright &copy; 2025 jiangbingo

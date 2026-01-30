@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+
+{% block title %}Bingo Downloader - 视频下载{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Hero Section -->
+    <div class="text-center mb-5">
+        <h1 class="display-4 mb-3">
+            <i class="bi bi-download text-primary"></i>
+            Bingo Downloader
+        </h1>
+        <p class="lead text-muted">从 1000+ 网站下载视频，支持 YouTube、Bilibili、Twitter、TikTok 等</p>
+    </div>
+
+    <!-- Download Card -->
+    <div class="card shadow-lg mb-4">
+        <div class="card-body p-4">
+            <form id="download-form" hx-post="/api/download/start" hx-target="#result-area">
+                <!-- URL Input -->
+                <div class="mb-4">
+                    <label for="url" class="form-label">
+                        <i class="bi bi-link-45deg me-1"></i>视频链接
+                    </label>
+                    <input type="url" class="form-control form-control-lg" id="url" name="url"
+                           placeholder="https://www.youtube.com/watch?v=..." required>
+                    <div class="form-text">
+                        支持的平台：
+                        {% for platform in supported_platforms %}
+                            <span class="badge bg-secondary me-1">{{ platform.name }}</span>
+                        {% endfor %}
+                        等 1000+ 网站
+                    </div>
+                </div>
+
+                <!-- Options Row -->
+                <div class="row g-3 mb-4">
+                    <!-- Format Type -->
+                    <div class="col-md-4">
+                        <label for="format-type" class="form-label">
+                            <i class="bi bi-file-earmark-play me-1"></i>格式类型
+                        </label>
+                        <select class="form-select" id="format-type" name="format_type"
+                                onchange="toggleFormatOptions()">
+                            <option value="video">视频</option>
+                            <option value="audio">仅音频</option>
+                        </select>
+                    </div>
+
+                    <!-- Quality -->
+                    <div class="col-md-4" id="quality-group">
+                        <label for="quality" class="form-label">
+                            <i class="bi bi-display me-1"></i>质量
+                        </label>
+                        <select class="form-select" id="quality" name="quality">
+                            <option value="best">最佳可用</option>
+                            <option value="1080" selected>1080p (Full HD)</option>
+                            <option value="720">720p (HD)</option>
+                            <option value="480">480p (SD)</option>
+                            <option value="360">360p</option>
+                        </select>
+                    </div>
+
+                    <!-- Audio Format -->
+                    <div class="col-md-4 d-none" id="audio-format-group">
+                        <label for="audio-format" class="form-label">
+                            <i class="bi bi-music-note me-1"></i>音频格式
+                        </label>
+                        <select class="form-select" id="audio-format" name="audio_format">
+                            <option value="mp3" selected>MP3</option>
+                            <option value="wav">WAV</option>
+                            <option value="m4a">M4A</option>
+                            <option value="flac">FLAC</option>
+                            <option value="aac">AAC</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Additional Options -->
+                <div class="row g-3 mb-4">
+                    <!-- Subtitles -->
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            <i class="bi bi-badge-cc me-1"></i>字幕选项
+                        </label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="subtitles" name="subtitles">
+                            <label class="form-check-label" for="subtitles">
+                                下载并嵌入字幕
+                            </label>
+                        </div>
+                        <input type="text" class="form-control form-control-sm mt-2"
+                               id="sub-langs" name="sub_langs" placeholder="en,zh" value="en,zh">
+                        <div class="form-text">字幕语言代码，用逗号分隔</div>
+                    </div>
+
+                    <!-- Cookie Browser -->
+                    <div class="col-md-6">
+                        <label for="cookies-browser" class="form-label">
+                            <i class="bi bi-browser-chrome me-1"></i>Cookie 来源
+                        </label>
+                        <select class="form-select" id="cookies-browser" name="cookies_browser">
+                            <option value="chrome" selected>Chrome</option>
+                            <option value="firefox">Firefox</option>
+                            <option value="safari">Safari</option>
+                            <option value="edge">Edge</option>
+                            <option value="opera">Opera</option>
+                            <option value="brave">Brave</option>
+                            <option value="">不使用 Cookie</option>
+                        </select>
+                        <div class="form-text">使用浏览器 Cookie 可避免 YouTube 403 错误</div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="d-grid">
+                    <button type="submit" class="btn btn-primary btn-lg"
+                            id="submit-btn" hx-indicator="#loading">
+                        <i class="bi bi-download me-2"></i>
+                        开始下载
+                    </button>
+                </div>
+
+                <!-- Loading Indicator -->
+                <div id="loading" class="htmx-indicator d-none mt-3">
+                    <div class="text-center">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">加载中...</span>
+                        </div>
+                        <p class="mt-2 text-muted">正在处理请求...</p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Result Area -->
+    <div id="result-area"></div>
+
+    <!-- Supported Platforms -->
+    <div class="card mt-4">
+        <div class="card-header">
+            <h5 class="mb-0"><i class="bi bi-globe me-2"></i>支持的平台</h5>
+        </div>
+        <div class="card-body">
+            <div class="row text-center">
+                {% for platform in supported_platforms %}
+                <div class="col-md-2 col-sm-4 col-6 mb-3">
+                    <div class="p-3 border rounded">
+                        <i class="bi bi-{{ platform.icon }} fs-2 mb-2"></i>
+                        <p class="small mb-0">{{ platform.name }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+                <div class="col-md-2 col-sm-4 col-6 mb-3">
+                    <div class="p-3 border rounded">
+                        <i class="bi bi-three-dots fs-2 mb-2"></i>
+                        <p class="small mb-0">1000+ 更多</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+function toggleFormatOptions() {
+    const formatType = document.getElementById('format-type').value;
+    const qualityGroup = document.getElementById('quality-group');
+    const audioFormatGroup = document.getElementById('audio-format-group');
+
+    if (formatType === 'audio') {
+        qualityGroup.classList.add('d-none');
+        audioFormatGroup.classList.remove('d-none');
+    } else {
+        qualityGroup.classList.remove('d-none');
+        audioFormatGroup.classList.add('d-none');
+    }
+}
+</script>
+{% endblock %}

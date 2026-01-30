@@ -1,0 +1,98 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Logs
+logs/
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+ENV/
+env/
+
+# Downloads
+Downloads/
+*.mp4
+*.mkv
+*.avi
+*.mp3
+*.wav
+*.flac
+*.m4a
+*.aac
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+.yt-dlp-history.db
+.yt-dlp-downloads.json
+
+# Documentation
+docs/site/
+docs/.doctrees/
+site/
+
+# Package manager
+.pnpm-debug.log*
+
+# Testing
+*.test.ts
+coverage/
+.nyc_output/
+
+# MCP Inspector
+.mcp-inspector/
+
+# Temporary files
+*.tmp
+*.cache
+*.bak
+
+# Security
+*.secret
+*.key
+*.pem
+credentials.json
+auth.json
+
+# Browser cookies (if exported)
+cookies.txt
+cookies.json
+
+# Subtitle files (temporary)
+*.srt
+*.vtt
+*.ass

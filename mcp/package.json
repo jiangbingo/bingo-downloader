@@ -1,0 +1,38 @@
+{
+  "name": "@bingo/downloader-mcp",
+  "version": "1.0.0",
+  "description": "MCP Server for Bingo Video Downloader - Download videos from 1000+ websites",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "bingo-downloader-mcp": "dist/index.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "test": "node tests/test-mcp.js"
+  },
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "video-downloader",
+    "yt-dlp",
+    "youtube",
+    "bilibili",
+    "tiktok"
+  ],
+  "author": "jiangbingo",
+  "license": "MIT",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
