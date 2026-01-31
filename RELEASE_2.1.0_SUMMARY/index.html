@@ -1,0 +1,2138 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A powerful video downloader with MCP Server and Skills">
+      
+      
+        <meta name="author" content="jiangbingo">
+      
+      
+        <link rel="canonical" href="https://jiangbingo.github.io/bingo-downloader/RELEASE_2.1.0_SUMMARY/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.1">
+    
+    
+      
+        <title>Bingo Downloader v2.1.0 发布摘要 - Bingo Downloader</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bingo-downloader-v210" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Bingo Downloader" class="md-header__button md-logo" aria-label="Bingo Downloader" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Bingo Downloader
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bingo Downloader v2.1.0 发布摘要
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/jiangbingo/bingo-downloader" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jiangbingo/bingo-downloader
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href=".." class="md-tabs__link">
+          
+  
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../installation/dependencies/" class="md-tabs__link">
+          
+  
+  
+  Installation
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../guide/usage/" class="md-tabs__link">
+          
+  
+  
+  Usage Guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../download.md" class="md-tabs__link">
+          
+  
+  
+  API Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../examples/" class="md-tabs__link">
+          
+  
+  
+  Examples
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../troubleshooting/" class="md-tabs__link">
+          
+  
+  
+  Troubleshooting
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Bingo Downloader" class="md-nav__button md-logo" aria-label="Bingo Downloader" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Bingo Downloader
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/jiangbingo/bingo-downloader" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    jiangbingo/bingo-downloader
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Home
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Welcome to Bingo Downloader
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/quick-start/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick Start
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Installation
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Dependencies
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/mcp-server/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP Server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage Guide
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Usage Guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../guide/usage/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Usage
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API Reference
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    API Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../download.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    None
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Examples
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Examples
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    使用示例
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Troubleshooting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    故障排除
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#agents" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎉 使用并行 Agents 实现的全面升级
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📊 执行概览
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-1-mcp-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔴 Agent 1: MCP Server 安全漏洞修复
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔴 Agent 1: MCP Server 安全漏洞修复">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        修复的安全问题
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="修复的安全问题">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 命令注入漏洞 (严重)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 路径遍历漏洞 (严重)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-url" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. URL 验证漏洞 (中等)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        修改的文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-2-web-ui" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🟠 Agent 2: Web UI 安全增强
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🟠 Agent 2: Web UI 安全增强">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        实现的安全功能
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="实现的安全功能">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-api-key" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. API Key 认证（可选）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 速率限制
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-cookie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Cookie 加密存储
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-cors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 改进的 CORS 配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        新增文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🟡 Agent 3: 测试框架搭建
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🟡 Agent 3: 测试框架搭建">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typescript-mcp-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TypeScript 测试框架 (MCP Server)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web API 测试框架
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        更新的配置文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        新增文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🟢 Agent 4: 日志系统实现
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🟢 Agent 4: 日志系统实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#typescript-mcp-server_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TypeScript 日志系统 (MCP Server)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#python" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Python 日志系统
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        日志位置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        环境变量配置
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        新增文件
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📈 版本对比
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎯 安全评分对比
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🚀 快速开始
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🚀 快速开始">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 安装依赖
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 配置安全（可选）
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 运行测试
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 启动服务
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📚 新增文档
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        ✅ 验证清单
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🔄 向后兼容性
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🎓 技术亮点
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎓 技术亮点">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. 并行执行
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. 多层防御
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. 可观测性
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. 测试覆盖
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        📝 下一步计划
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_19" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        🙏 致谢
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="bingo-downloader-v210">Bingo Downloader v2.1.0 发布摘要<a class="headerlink" href="#bingo-downloader-v210" title="Permanent link">&para;</a></h1>
+<h2 id="agents">🎉 使用并行 Agents 实现的全面升级<a class="headerlink" href="#agents" title="Permanent link">&para;</a></h2>
+<p><strong>发布日期</strong>: 2026-01-31
+<strong>执行方式</strong>: 4 个并行 Agents 同时独立工作</p>
+<hr />
+<h2 id="_1">📊 执行概览<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>任务</th>
+<th>状态</th>
+<th>完成度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Agent 1</td>
+<td>MCP Server 安全漏洞修复</td>
+<td>✅ 完成</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Agent 2</td>
+<td>Web UI 安全增强</td>
+<td>✅ 完成</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Agent 3</td>
+<td>测试框架搭建</td>
+<td>✅ 完成</td>
+<td>100% (42/42 测试通过)</td>
+</tr>
+<tr>
+<td>Agent 4</td>
+<td>日志系统实现</td>
+<td>✅ 完成</td>
+<td>100%</td>
+</tr>
+</tbody>
+</table>
+<p><strong>总耗时</strong>: 约 3-4 分钟（并行执行）
+<strong>预估串行耗时</strong>: 约 15-20 分钟</p>
+<hr />
+<h2 id="agent-1-mcp-server">🔴 Agent 1: MCP Server 安全漏洞修复<a class="headerlink" href="#agent-1-mcp-server" title="Permanent link">&para;</a></h2>
+<h3 id="_2">修复的安全问题<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<h4 id="1">1. 命令注入漏洞 (严重)<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>文件</strong>: <code>mcp/src/downloader.ts</code></li>
+<li><strong>修复</strong>: 使用 <code>spawn</code> + 参数数组替代 <code>execAsync</code></li>
+<li><strong>影响</strong>: 完全消除 shell 命令注入风险</li>
+</ul>
+<h4 id="2">2. 路径遍历漏洞 (严重)<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>新增函数</strong>: <code>validateDownloadPath()</code></li>
+<li><strong>功能</strong>:</li>
+<li>强制所有下载路径限制在用户主目录内</li>
+<li>检测并阻止 <code>../</code> 路径遍历攻击</li>
+<li>过滤危险字符</li>
+<li>自动展开 <code>~</code> 符号</li>
+</ul>
+<h4 id="3-url">3. URL 验证漏洞 (中等)<a class="headerlink" href="#3-url" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>新增函数</strong>: <code>validateUrl()</code></li>
+<li><strong>功能</strong>:</li>
+<li>严格的 URL 格式验证</li>
+<li>只允许 HTTP/HTTPS 协议</li>
+<li>阻止 SSRF 攻击（阻止访问本地/私有地址）</li>
+<li>过滤危险字符</li>
+<li>URL 长度限制 (2048 字符)</li>
+</ul>
+<h3 id="_3">修改的文件<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>mcp/src/downloader.ts</code> (+187 行)</li>
+<li><code>mcp/src/index.ts</code> (+102 行)</li>
+</ul>
+<hr />
+<h2 id="agent-2-web-ui">🟠 Agent 2: Web UI 安全增强<a class="headerlink" href="#agent-2-web-ui" title="Permanent link">&para;</a></h2>
+<h3 id="_4">实现的安全功能<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<h4 id="1-api-key">1. API Key 认证（可选）<a class="headerlink" href="#1-api-key" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>文件</strong>: <code>web/backend/security/auth.py</code></li>
+<li><strong>功能</strong>:</li>
+<li>基于 FastAPI 中间件的 API Key 认证</li>
+<li>可选启用/禁用（默认禁用，保持向后兼容）</li>
+<li>支持多个 API Keys</li>
+<li>公开端点自动排除</li>
+</ul>
+<p><strong>配置</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nv">API_KEY_ENABLED</span><span class="o">=</span><span class="nb">true</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nv">API_KEY_NAME</span><span class="o">=</span>X-API-Key
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nv">API_KEYS</span><span class="o">=</span>key1,key2,key3
+</code></pre></div></p>
+<h4 id="2_1">2. 速率限制<a class="headerlink" href="#2_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>文件</strong>: <code>web/backend/security/rate_limit.py</code></li>
+<li><strong>功能</strong>:</li>
+<li>基于 IP 地址的速率限制</li>
+<li>滑动窗口算法</li>
+<li>默认 60 请求/分钟</li>
+<li>返回标准速率限制响应头</li>
+</ul>
+<p><strong>配置</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nv">RATE_LIMIT_ENABLED</span><span class="o">=</span><span class="nb">true</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="nv">RATE_LIMIT_REQUESTS</span><span class="o">=</span><span class="m">60</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nv">RATE_LIMIT_WINDOW</span><span class="o">=</span><span class="m">60</span>
+</code></pre></div></p>
+<h4 id="3-cookie">3. Cookie 加密存储<a class="headerlink" href="#3-cookie" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>文件</strong>: <code>web/backend/security/encryption.py</code></li>
+<li><strong>功能</strong>:</li>
+<li>使用 Fernet 对称加密（AES-128-CBC + HMAC）</li>
+<li>缩短过期时间至 24 小时（之前是 7 天）</li>
+<li>自动密钥生成和管理</li>
+</ul>
+<p><strong>配置</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nv">COOKIE_ENCRYPTION_KEY</span><span class="o">=</span>&lt;可选，不提供则自动生成&gt;
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nv">COOKIE_EXPIRATION_HOURS</span><span class="o">=</span><span class="m">24</span>
+</code></pre></div></p>
+<h4 id="4-cors">4. 改进的 CORS 配置<a class="headerlink" href="#4-cors" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>文件</strong>: <code>web/backend/config.py</code>, <code>main.py</code></li>
+<li><strong>改进</strong>:</li>
+<li>默认只允许 localhost</li>
+<li>可配置允许的来源、方法、Headers</li>
+<li>移除危险的通配符配置</li>
+</ul>
+<p><strong>配置</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="nv">CORS_ORIGINS</span><span class="o">=</span>http://localhost:8000,http://127.0.0.1:8000
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">CORS_ALLOW_CREDENTIALS</span><span class="o">=</span><span class="nb">true</span>
+</code></pre></div></p>
+<h3 id="_5">新增文件<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>web/backend/security/__init__.py</code></li>
+<li><code>web/backend/security/auth.py</code></li>
+<li><code>web/backend/security/rate_limit.py</code></li>
+<li><code>web/backend/security/encryption.py</code></li>
+<li><code>web/backend/.env.example</code></li>
+<li><code>web/backend/SECURITY.md</code></li>
+<li><code>scripts/generate_security_keys.py</code></li>
+<li><code>scripts/check_security_config.py</code></li>
+</ul>
+<hr />
+<h2 id="agent-3">🟡 Agent 3: 测试框架搭建<a class="headerlink" href="#agent-3" title="Permanent link">&para;</a></h2>
+<h3 id="typescript-mcp-server">TypeScript 测试框架 (MCP Server)<a class="headerlink" href="#typescript-mcp-server" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>框架</strong>: Vitest v4.0.18</li>
+<li><strong>覆盖率工具</strong>: @vitest/coverage-v8</li>
+<li><strong>UI 工具</strong>: @vitest/ui</li>
+<li><strong>测试结果</strong>: ✅ 42 个测试全部通过</li>
+<li><strong>测试覆盖</strong>:</li>
+<li>✅ 平台检测（YouTube, Bilibili, Twitter/X, TikTok, Vimeo）</li>
+<li>✅ URL 验证（空 URL, 危险字符, 非 HTTP 协议）</li>
+<li>✅ 路径验证（默认和自定义下载路径）</li>
+<li>✅ 质量选择（1080p, 720p, 480p, 360p, best）</li>
+<li>✅ 音频提取（mp3, m4a, wav, flac）</li>
+<li>✅ 字幕下载（启用字幕, 自定义语言）</li>
+<li>✅ 格式列表</li>
+<li>✅ Cookie 处理（Chrome, Firefox, Safari, Edge）</li>
+</ul>
+<h3 id="web-api">Web API 测试框架<a class="headerlink" href="#web-api" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>框架</strong>: pytest + pytest-asyncio</li>
+<li><strong>HTTP 客户端</strong>: httpx</li>
+<li><strong>测试文件</strong>:</li>
+<li><code>web/backend/tests/conftest.py</code> - 测试配置</li>
+<li><code>web/backend/tests/test_api.py</code> - API 端点测试</li>
+<li><code>web/backend/tests/test_simple.py</code> - 集成测试</li>
+</ul>
+<h3 id="_6">更新的配置文件<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><strong>package.json</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">&quot;scripts&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">&quot;test&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest run&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">&quot;test:watch&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">&quot;test:coverage&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest run --coverage&quot;</span><span class="p">,</span>
+<a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">&quot;test:ui&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;vitest --ui&quot;</span>
+<a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="p">}</span>
+<a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+</code></pre></div></p>
+<p><strong>Makefile</strong>:
+- <code>make test</code> - 运行所有测试
+- <code>make test-mcp</code> - 运行 MCP Server 测试
+- <code>make test-web</code> - 运行 Web API 测试
+- <code>make test-coverage</code> - 生成覆盖率报告</p>
+<h3 id="_7">新增文件<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>mcp/vitest.config.ts</code></li>
+<li><code>mcp/src/downloader.test.ts</code></li>
+<li><code>web/backend/tests/conftest.py</code></li>
+<li><code>web/backend/tests/test_api.py</code></li>
+<li><code>web/backend/tests/test_simple.py</code></li>
+<li><code>tests/README.md</code></li>
+<li><code>tests/TESTING_SUMMARY.md</code></li>
+<li><code>tests/QUICK_REFERENCE.md</code></li>
+</ul>
+<hr />
+<h2 id="agent-4">🟢 Agent 4: 日志系统实现<a class="headerlink" href="#agent-4" title="Permanent link">&para;</a></h2>
+<h3 id="typescript-mcp-server_1">TypeScript 日志系统 (MCP Server)<a class="headerlink" href="#typescript-mcp-server_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>库</strong>: Pino (高性能 JSON 日志)</li>
+<li><strong>文件</strong>: <code>mcp/src/logger.ts</code></li>
+<li><strong>功能</strong>:</li>
+<li>结构化日志（JSON 格式）</li>
+<li>5 个日志级别（debug, info, warn, error, fatal）</li>
+<li>开发环境彩色输出</li>
+<li>生产环境文件输出</li>
+<li>子 logger 支持</li>
+<li>便捷日志函数</li>
+</ul>
+<p><strong>使用示例</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nx">logger</span><span class="p">.</span><span class="nx">info</span><span class="p">(</span><span class="s1">&#39;Server started&#39;</span><span class="p">);</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nx">logger</span><span class="p">.</span><span class="nx">error</span><span class="p">({</span><span class="w"> </span><span class="nx">error</span><span class="o">:</span><span class="w"> </span><span class="kt">err</span><span class="w"> </span><span class="p">},</span><span class="w"> </span><span class="s1">&#39;Download failed&#39;</span><span class="p">);</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nx">logDownloadStart</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">platform</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;YouTube&#39;</span><span class="w"> </span><span class="p">});</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nx">logDownloadSuccess</span><span class="p">(</span><span class="nx">url</span><span class="p">,</span><span class="w"> </span><span class="nx">filePath</span><span class="p">,</span><span class="w"> </span><span class="nx">duration</span><span class="p">);</span>
+</code></pre></div></p>
+<h3 id="python">Python 日志系统<a class="headerlink" href="#python" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>文件</strong>: <code>web/backend/utils/logger.py</code></li>
+<li><strong>功能</strong>:</li>
+<li>统一日志格式</li>
+<li>5 个日志级别（DEBUG, INFO, WARNING, ERROR, CRITICAL）</li>
+<li>文件按日期分割</li>
+<li>错误日志单独文件</li>
+<li>异步写入优化</li>
+</ul>
+<p><strong>使用示例</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">logger</span> <span class="o">=</span> <span class="n">BingoLogger</span><span class="o">.</span><span class="n">get_logger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s1">&#39;Processing started&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">log_download_start</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">platform</span><span class="o">=</span><span class="s1">&#39;YouTube&#39;</span><span class="p">)</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">log_download_success</span><span class="p">(</span><span class="n">logger</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">file_path</span><span class="p">,</span> <span class="n">duration</span><span class="p">)</span>
+</code></pre></div></p>
+<h3 id="_8">日志位置<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><strong>TypeScript</strong>:
+- 开发环境: 控制台（彩色格式化）
+- 生产环境: <code>{LOG_FILE}</code> + <code>{LOG_FILE}-error.log</code></p>
+<p><strong>Python</strong>:
+- 目录: <code>~/.bingo-downloader/logs/</code>
+- 文件: <code>{name}.log</code> + <code>{name}-error.log</code></p>
+<h3 id="_9">环境变量配置<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p><strong>TypeScript</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nv">NODE_ENV</span><span class="o">=</span>production
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="nv">LOG_LEVEL</span><span class="o">=</span>info
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="nv">LOG_FILE</span><span class="o">=</span>/var/log/bingo-downloader/mcp.log
+</code></pre></div></p>
+<p><strong>Python</strong>:
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nv">LOG_LEVEL</span><span class="o">=</span>INFO
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="nv">LOG_DIR</span><span class="o">=</span>~/.bingo-downloader/logs
+</code></pre></div></p>
+<h3 id="_10">新增文件<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>mcp/src/logger.ts</code></li>
+<li><code>web/backend/utils/logger.py</code></li>
+<li><code>web/backend/utils/__init__.py</code></li>
+<li><code>docs/LOGGING.md</code></li>
+<li><code>docs/LOGGING_SUMMARY.md</code></li>
+<li><code>tests/test_logging.py</code></li>
+</ul>
+<hr />
+<h2 id="_11">📈 版本对比<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>功能</th>
+<th>v2.0.0</th>
+<th>v2.1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安全漏洞</td>
+<td>🔴 存在严重漏洞</td>
+<td>✅ 全部修复</td>
+</tr>
+<tr>
+<td>API 认证</td>
+<td>❌ 无</td>
+<td>✅ 可选 API Key</td>
+</tr>
+<tr>
+<td>速率限制</td>
+<td>❌ 无</td>
+<td>✅ 已实现</td>
+</tr>
+<tr>
+<td>Cookie 安全</td>
+<td>🟡 明文存储</td>
+<td>✅ Fernet 加密</td>
+</tr>
+<tr>
+<td>CORS 配置</td>
+<td>🟡 允许所有来源</td>
+<td>✅ 可配置限制</td>
+</tr>
+<tr>
+<td>日志系统</td>
+<td>🟡 console.error</td>
+<td>✅ Pino + logging</td>
+</tr>
+<tr>
+<td>测试覆盖</td>
+<td>🟡 0% (TypeScript)</td>
+<td>✅ 42 个测试</td>
+</tr>
+<tr>
+<td>文档完整性</td>
+<td>⭐⭐⭐⭐⭐</td>
+<td>⭐⭐⭐⭐⭐</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_12">🎯 安全评分对比<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>v2.0.0</th>
+<th>v2.1.0</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>命令注入防护</td>
+<td>❌ 无</td>
+<td>✅ 完全防护</td>
+</tr>
+<tr>
+<td>路径遍历防护</td>
+<td>❌ 无</td>
+<td>✅ 完全防护</td>
+</tr>
+<tr>
+<td>SSRF 防护</td>
+<td>❌ 无</td>
+<td>✅ 已实现</td>
+</tr>
+<tr>
+<td>输入验证</td>
+<td>🟡 部分</td>
+<td>✅ 多层验证</td>
+</tr>
+<tr>
+<td>认证机制</td>
+<td>❌ 无</td>
+<td>✅ 可选实现</td>
+</tr>
+<tr>
+<td>速率限制</td>
+<td>❌ 无</td>
+<td>✅ 已实现</td>
+</tr>
+<tr>
+<td>数据加密</td>
+<td>🟡 部分</td>
+<td>✅ Cookie 加密</td>
+</tr>
+<tr>
+<td><strong>总体安全评分</strong></td>
+<td>⭐⭐⭐ (3/5)</td>
+<td>⭐⭐⭐⭐⭐ (5/5)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_13">🚀 快速开始<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<h3 id="1_1">1. 安装依赖<a class="headerlink" href="#1_1" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>make<span class="w"> </span>install
+</code></pre></div>
+<h3 id="2_2">2. 配置安全（可选）<a class="headerlink" href="#2_2" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>cp<span class="w"> </span>.env.example<span class="w"> </span>.env
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="c1"># 编辑 .env 文件</span>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>python3<span class="w"> </span>scripts/generate_security_keys.py
+</code></pre></div>
+<h3 id="3">3. 运行测试<a class="headerlink" href="#3" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>make<span class="w"> </span><span class="nb">test</span>
+</code></pre></div>
+<h3 id="4">4. 启动服务<a class="headerlink" href="#4" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1"># MCP Server</span>
+<a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>make<span class="w"> </span>dev
+<a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>
+<a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a><span class="c1"># Web UI</span>
+<a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>make<span class="w"> </span>run-web
+</code></pre></div>
+<hr />
+<h2 id="_14">📚 新增文档<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>文档</th>
+<th>路径</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>快速开始指南</strong></td>
+<td><code>QUICK_START_SECURITY.md</code></td>
+</tr>
+<tr>
+<td><strong>安全功能详解</strong></td>
+<td><code>web/backend/SECURITY.md</code></td>
+</tr>
+<tr>
+<td><strong>安全增强摘要</strong></td>
+<td><code>SECURITY_ENHANCEMENTS.md</code></td>
+</tr>
+<tr>
+<td><strong>日志系统文档</strong></td>
+<td><code>docs/LOGGING.md</code></td>
+</tr>
+<tr>
+<td><strong>日志系统摘要</strong></td>
+<td><code>docs/LOGGING_SUMMARY.md</code></td>
+</tr>
+<tr>
+<td><strong>测试框架文档</strong></td>
+<td><code>tests/README.md</code></td>
+</tr>
+<tr>
+<td><strong>测试框架摘要</strong></td>
+<td><code>tests/TESTING_SUMMARY.md</code></td>
+</tr>
+<tr>
+<td><strong>测试快速参考</strong></td>
+<td><code>tests/QUICK_REFERENCE.md</code></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="_15">✅ 验证清单<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<ul>
+<li>[x] TypeScript 编译通过</li>
+<li>[x] 42 个测试全部通过</li>
+<li>[x] Python 语法检查通过</li>
+<li>[x] 日志系统正常工作</li>
+<li>[x] 向后兼容性保持</li>
+<li>[x] 文档完整更新</li>
+</ul>
+<hr />
+<h2 id="_16">🔄 向后兼容性<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h2>
+<p>所有新功能都是<strong>可选的</strong>，默认配置保持<strong>完全向后兼容</strong>：</p>
+<ul>
+<li>✅ API Key 认证：默认禁用</li>
+<li>✅ 速率限制：默认启用但限制宽松</li>
+<li>✅ Cookie 加密：自动启用（如果 cryptography 已安装）</li>
+<li>✅ CORS：默认允许 localhost</li>
+<li>✅ 日志系统：不破坏现有输出</li>
+</ul>
+<hr />
+<h2 id="_17">🎓 技术亮点<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<h3 id="1_2">1. 并行执行<a class="headerlink" href="#1_2" title="Permanent link">&para;</a></h3>
+<p>使用 4 个独立的 agents 同时工作，大幅提升开发效率。</p>
+<h3 id="2_3">2. 多层防御<a class="headerlink" href="#2_3" title="Permanent link">&para;</a></h3>
+<p>实现了输入验证、路径验证、URL 验证、安全执行等多层安全防护。</p>
+<h3 id="3_1">3. 可观测性<a class="headerlink" href="#3_1" title="Permanent link">&para;</a></h3>
+<p>完整的日志系统支持结构化日志、文件轮转、环境配置。</p>
+<h3 id="4_1">4. 测试覆盖<a class="headerlink" href="#4_1" title="Permanent link">&para;</a></h3>
+<p>42 个测试覆盖核心功能，确保代码质量。</p>
+<hr />
+<h2 id="_18">📝 下一步计划<a class="headerlink" href="#_18" title="Permanent link">&para;</a></h2>
+<ol>
+<li><strong>CI/CD 集成</strong> - 将测试集成到 GitHub Actions</li>
+<li><strong>性能测试</strong> - 添加负载测试和性能基准</li>
+<li><strong>文档网站</strong> - 部署 MkDocs 文档到 GitHub Pages</li>
+<li><strong>更多测试</strong> - 增加集成测试和端到端测试</li>
+</ol>
+<hr />
+<h2 id="_19">🙏 致谢<a class="headerlink" href="#_19" title="Permanent link">&para;</a></h2>
+<p>本次升级使用 <strong>Claude Code 的并行 Agent 功能</strong>实现，展示了 AI 辅助开发的强大能力。</p>
+<hr />
+<p><strong>版本</strong>: 2.1.0
+<strong>发布日期</strong>: 2026-01-31
+<strong>执行方式</strong>: 4 并行 Agents
+<strong>总耗时</strong>: ~3-4 分钟</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-datetime" title="January 31, 2026 17:07:48 CST">January 31, 2026 17:07:48</span>
+  </span>
+
+    
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2025 jiangbingo
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/jiangbingo/bingo-downloader" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://twitter.com/jiangbingo" target="_blank" rel="noopener" title="twitter.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M459.4 151.7c.3 4.5.3 9.1.3 13.6 0 138.7-105.6 298.6-298.6 298.6-59.5 0-114.7-17.2-161.1-47.1 8.4 1 16.6 1.3 25.3 1.3 49.1 0 94.2-16.6 130.3-44.8-46.1-1-84.8-31.2-98.1-72.8 6.5 1 13 1.6 19.8 1.6 9.4 0 18.8-1.3 27.6-3.6-48.1-9.7-84.1-52-84.1-103v-1.3c14 7.8 30.2 12.7 47.4 13.3-28.3-18.8-46.8-51-46.8-87.4 0-19.5 5.2-37.4 14.3-53C87.4 130.8 165 172.4 252.1 176.9c-1.6-7.8-2.6-15.9-2.6-24C249.5 95.1 296.3 48 354.4 48c30.2 0 57.5 12.7 76.7 33.1 23.7-4.5 46.5-13.3 66.6-25.3-7.8 24.4-24.4 44.8-46.1 57.8 21.1-2.3 41.6-8.1 60.4-16.2-14.3 20.8-32.2 39.3-52.6 54.3"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.expand", "navigation.top", "navigation.tracking", "search.highlight", "search.share", "toc.follow", "content.code.copy", "content.code.annotate"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
