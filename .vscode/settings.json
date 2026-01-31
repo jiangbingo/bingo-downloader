@@ -1,0 +1,15 @@
+{
+  "github-actions.workflows.pinned.workflows": [
+    ".github/workflows/ci.yml",
+    ".github/workflows/deploy-docs.yml"
+  ],
+  "github-actions.workflows.selected.workflow": ".github/workflows/deploy-docs.yml",
+  "files.exclude": {
+    "**/__pycache__": true,
+    "**/*.pyc": true,
+    "**/.venv": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.mcp-inspector": true
+  }
+}

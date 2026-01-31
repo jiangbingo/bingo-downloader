@@ -17,7 +17,13 @@ build/
 .env.*.local
 
 # IDE
-.vscode/
+# VSCode - 只忽略用户特定配置，保留团队共享配置
+.vscode/launch.json
+.vscode/tasks.json
+.vscode/*.code-workspace
+# 保留这些共享配置：
+# !.vscode/settings.json
+# !.vscode/extensions.json
 .idea/
 *.swp
 *.swo
