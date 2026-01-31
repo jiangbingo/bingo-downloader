@@ -21,18 +21,34 @@ from datetime import datetime
 from pathlib import Path
 from typing import Optional, List, Dict, Any
 
-# Configure logging
-LOG_FILE = Path.home() / '.yt-dlp-download.log'
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s [%(levelname)s] %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S',
-    handlers=[
-        logging.FileHandler(LOG_FILE),
-        logging.StreamHandler(sys.stderr)  # Also output to stderr
-    ]
-)
-logger = logging.getLogger(__name__)
+# Add web/backend to path for logger import
+sys.path.insert(0, str(Path(__file__).parent.parent.parent / "web" / "backend"))
+
+try:
+    from utils.logger import BingoLogger, log_download_start, log_download_success, log_download_error
+    logger = BingoLogger.get_logger('bingo_downloader', log_file='download')
+except ImportError:
+    # Fallback to legacy logger if web backend is not available
+    logging.basicConfig(
+        level=logging.INFO,
+        format='%(asctime)s [%(levelname)s] %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S',
+        handlers=[
+            logging.StreamHandler(sys.stderr)
+        ]
+    )
+    logger = logging.getLogger(__name__)
+
+    def log_download_start(lg, url, platform, **kwargs):
+        lg.info(f"Download started | URL: {url} | Platform: {platform}")
+
+    def log_download_success(lg, url, file_path, duration=None):
+        dur_str = f" | Duration: {duration:.2f}s" if duration else ""
+        lg.info(f"Download completed | URL: {url} | File: {file_path}{dur_str}")
+
+    def log_download_error(lg, url, error, duration=None):
+        dur_str = f" | Duration: {duration:.2f}s" if duration else ""
+        lg.error(f"Download failed | URL: {url} | Error: {str(error)}{dur_str}")
 
 try:
     import yt_dlp
@@ -585,6 +601,7 @@ class BingoDownloader:
         quality: Optional[int] = None,
         subtitles: bool = False,
         cookies_browser: Optional[str] = None,
+        cookies_file: Optional[str] = None,
         format_id: Optional[str] = None,
         list_formats: bool = False,
         smart_format: bool = False,
@@ -595,6 +612,7 @@ class BingoDownloader:
         self.quality = quality
         self.subtitles = subtitles
         self.cookies_browser = cookies_browser
+        self.cookies_file = cookies_file
         self.format_id = format_id
         self.list_formats = list_formats
         self.smart_format = smart_format
@@ -652,7 +670,9 @@ class BingoDownloader:
             })
 
         # Cookies
-        if self.cookies_browser:
+        if self.cookies_file:
+            opts['cookiefile'] = self.cookies_file
+        elif self.cookies_browser:
             opts['cookiesfrombrowser'] = (self.cookies_browser,)
 
         return opts
@@ -863,8 +883,11 @@ class BingoDownloader:
         # Detect platform
         platform = self.detect_platform(url)
 
+        # Track download start time
+        download_start_time = time.time()
+
         # Log download start
-        logger.info(f"Download started: URL={url} Platform={platform}")
+        log_download_start(logger, url, platform, quality=self.quality, audio_only=self.audio_only)
 
         # Auto-use cookies for YouTube if not specified
         if platform == 'YouTube' and not self.cookies_browser:
@@ -938,7 +961,8 @@ class BingoDownloader:
                 print(f"  Files saved to: {self.download_path}")
 
             # Log success
-            logger.info(f"Download completed: URL={url} Path={self.download_path}")
+            duration = time.time() - download_start_time
+            log_download_success(logger, url, str(self.download_path), duration)
 
             # 记录下载历史
             try:
@@ -963,7 +987,8 @@ class BingoDownloader:
 
         except Exception as e:
             # Log failure
-            logger.error(f"Download failed: URL={url} Error={e}")
+            duration = time.time() - download_start_time
+            log_download_error(logger, url, e, duration)
 
             # 记录失败的下载
             try:

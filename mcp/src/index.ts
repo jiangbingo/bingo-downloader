@@ -8,6 +8,41 @@ import {
 } from '@modelcontextprotocol/sdk/types.js';
 import { downloadVideo, extractAudio, downloadWithSubs, listFormats } from './downloader.js';
 import { getHistory, getStats } from './history.js';
+import { logger } from './logger.js';
+
+/**
+ * 验证 URL 参数的基本安全检查
+ */
+function validateUrlInput(url: any): { valid: boolean; error?: string } {
+  if (!url || typeof url !== 'string') {
+    return { valid: false, error: 'URL parameter is required and must be a string' };
+  }
+
+  if (url.trim().length === 0) {
+    return { valid: false, error: 'URL cannot be empty' };
+  }
+
+  if (url.length > 2048) {
+    return { valid: false, error: 'URL exceeds maximum length of 2048 characters' };
+  }
+
+  return { valid: true };
+}
+
+/**
+ * 验证路径参数的基本安全检查
+ */
+function validatePathInput(path: any): { valid: boolean; error?: string } {
+  if (path && typeof path !== 'string') {
+    return { valid: false, error: 'Path parameter must be a string' };
+  }
+
+  if (path && path.length > 512) {
+    return { valid: false, error: 'Path exceeds maximum length of 512 characters' };
+  }
+
+  return { valid: true };
+}
 
 // Create MCP Server
 const server = new Server(
@@ -183,6 +218,33 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
   try {
     switch (name) {
       case 'download_video': {
+        // 输入验证
+        const urlValidation = validateUrlInput(args?.url);
+        if (!urlValidation.valid) {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Validation error: ${urlValidation.error}`,
+              },
+            ],
+            isError: true,
+          };
+        }
+
+        const pathValidation = validatePathInput(args?.download_path);
+        if (!pathValidation.valid) {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Validation error: ${pathValidation.error}`,
+              },
+            ],
+            isError: true,
+          };
+        }
+
         const result = await downloadVideo(
           args?.url as string,
           args?.quality as string,
@@ -203,6 +265,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       case 'extract_audio': {
+        // 输入验证
+        const urlValidation = validateUrlInput(args?.url);
+        if (!urlValidation.valid) {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Validation error: ${urlValidation.error}`,
+              },
+            ],
+            isError: true,
+          };
+        }
+
         const result = await extractAudio(
           args?.url as string,
           args?.format as string,
@@ -223,6 +299,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       case 'download_with_subs': {
+        // 输入验证
+        const urlValidation = validateUrlInput(args?.url);
+        if (!urlValidation.valid) {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Validation error: ${urlValidation.error}`,
+              },
+            ],
+            isError: true,
+          };
+        }
+
         const result = await downloadWithSubs(
           args?.url as string,
           args?.quality as string,
@@ -243,6 +333,20 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
       }
 
       case 'list_formats': {
+        // 输入验证
+        const urlValidation = validateUrlInput(args?.url);
+        if (!urlValidation.valid) {
+          return {
+            content: [
+              {
+                type: 'text',
+                text: `Validation error: ${urlValidation.error}`,
+              },
+            ],
+            isError: true,
+          };
+        }
+
         const result = await listFormats(args?.url as string, args?.cookies_browser as string);
         return {
           content: [
@@ -338,10 +442,10 @@ function formatBytes(bytes: number): string {
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.error('Bingo Downloader MCP Server running on stdio');
+  logger.info('Bingo Downloader MCP Server running on stdio');
 }
 
 main().catch((error) => {
-  console.error('Fatal error:', error);
+  logger.fatal({ error }, 'Fatal error in MCP Server');
   process.exit(1);
 });

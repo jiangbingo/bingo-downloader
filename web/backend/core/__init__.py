@@ -12,7 +12,7 @@ if str(skill_scripts_path) not in sys.path:
 
 try:
     from download import (
-        VideoDownloader,
+        BingoDownloader,
         DownloadHistory,
         SmartFormatSelector,
         SmartRetry,
@@ -23,11 +23,11 @@ try:
 except ImportError as e:
     print(f"Warning: Could not import core modules: {e}")
     CORE_AVAILABLE = False
-    VideoDownloader = None
+    BingoDownloader = None
     DownloadHistory = None
 
 __all__ = [
-    "VideoDownloader",
+    "BingoDownloader",
     "DownloadHistory",
     "SmartFormatSelector",
     "SmartRetry",

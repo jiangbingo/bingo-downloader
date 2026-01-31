@@ -1,5 +1,8 @@
 import path from 'path';
 import fs from 'fs/promises';
+import { createLogger } from './logger.js';
+
+const logger = createLogger('history');
 
 interface DownloadRecord {
   id: number;
@@ -43,7 +46,7 @@ async function getDownloads(): Promise<DownloadRecord[]> {
     const db = JSON.parse(data);
     return db.downloads || [];
   } catch (error) {
-    console.error('Error reading downloads:', error);
+    logger.error({ error }, 'Error reading downloads from database');
     return [];
   }
 }
@@ -54,7 +57,7 @@ async function saveDownloads(downloads: DownloadRecord[]): Promise<void> {
     const data = JSON.stringify({ downloads }, null, 2);
     await fs.writeFile(DB_SQLITE_PATH, data, 'utf-8');
   } catch (error) {
-    console.error('Error saving downloads:', error);
+    logger.error({ error }, 'Error saving downloads to database');
   }
 }
 

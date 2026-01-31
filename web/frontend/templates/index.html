@@ -16,7 +16,7 @@
     <!-- Download Card -->
     <div class="card shadow-lg mb-4">
         <div class="card-body p-4">
-            <form id="download-form" hx-post="/api/download/start" hx-target="#result-area">
+            <form id="download-form" onsubmit="handleDownload(event)">
                 <!-- URL Input -->
                 <div class="mb-4">
                     <label for="url" class="form-label">
@@ -84,7 +84,9 @@
                             <i class="bi bi-badge-cc me-1"></i>字幕选项
                         </label>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="subtitles" name="subtitles">
+                            <input type="hidden" id="subtitles-hidden" name="subtitles" value="false">
+                            <input class="form-check-input" type="checkbox" id="subtitles"
+                                   onchange="document.getElementById('subtitles-hidden').value = this.checked ? 'true' : 'false'">
                             <label class="form-check-label" for="subtitles">
                                 下载并嵌入字幕
                             </label>
@@ -99,23 +101,30 @@
                         <label for="cookies-browser" class="form-label">
                             <i class="bi bi-browser-chrome me-1"></i>Cookie 来源
                         </label>
-                        <select class="form-select" id="cookies-browser" name="cookies_browser">
-                            <option value="chrome" selected>Chrome</option>
-                            <option value="firefox">Firefox</option>
-                            <option value="safari">Safari</option>
-                            <option value="edge">Edge</option>
-                            <option value="opera">Opera</option>
-                            <option value="brave">Brave</option>
-                            <option value="">不使用 Cookie</option>
-                        </select>
-                        <div class="form-text">使用浏览器 Cookie 可避免 YouTube 403 错误</div>
+                        <div class="input-group">
+                            <select class="form-select" id="cookies-browser" name="cookies_browser">
+                                <option value="chrome" selected>Chrome</option>
+                                <option value="firefox">Firefox</option>
+                                <option value="safari">Safari</option>
+                                <option value="edge">Edge</option>
+                                <option value="opera">Opera</option>
+                                <option value="brave">Brave</option>
+                                <option value="">不使用 Cookie</option>
+                            </select>
+                            <button class="btn btn-outline-secondary" type="button"
+                                    onclick="authorizeCookies()" title="授权并缓存 Cookies">
+                                <i class="bi bi-key"></i>
+                            </button>
+                        </div>
+                        <div class="form-text">
+                            <span id="cookies-status">检查中...</span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Submit Button -->
                 <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg"
-                            id="submit-btn" hx-indicator="#loading">
+                    <button type="submit" class="btn btn-primary btn-lg" id="submit-btn">
                         <i class="bi bi-download me-2"></i>
                         开始下载
                     </button>
@@ -166,6 +175,11 @@
 
 {% block extra_js %}
 <script>
+// 页面加载时检查 cookies 状态
+document.addEventListener('DOMContentLoaded', function() {
+    checkCookiesStatus();
+});
+
 function toggleFormatOptions() {
     const formatType = document.getElementById('format-type').value;
     const qualityGroup = document.getElementById('quality-group');
@@ -177,6 +191,165 @@ function toggleFormatOptions() {
     } else {
         qualityGroup.classList.remove('d-none');
         audioFormatGroup.classList.add('d-none');
+    }
+}
+
+async function checkCookiesStatus() {
+    const statusEl = document.getElementById('cookies-status');
+    try {
+        const response = await fetch('/api/download/cookies-status');
+        const status = await response.json();
+        const browser = document.getElementById('cookies-browser').value;
+
+        if (browser && status[browser]?.cached) {
+            const age = status[browser].age_hours;
+            statusEl.innerHTML = `<i class="bi bi-check-circle text-success"></i> 已缓存 (${age.toFixed(1)} 小时前)`;
+        } else if (browser) {
+            statusEl.innerHTML = `<i class="bi bi-exclamation-circle text-warning"></i> 首次使用需授权 <button class="btn btn-sm btn-link p-0" onclick="authorizeCookies()">立即授权</button>`;
+        } else {
+            statusEl.innerHTML = `<i class="bi bi-info-circle"></i> 未使用 Cookie`;
+        }
+    } catch (error) {
+        statusEl.innerHTML = `<i class="bi bi-x-circle text-danger"></i> 无法检查状态`;
+    }
+}
+
+async function authorizeCookies() {
+    const browser = document.getElementById('cookies-browser').value;
+    if (!browser) {
+        alert('请先选择一个浏览器');
+        return;
+    }
+
+    const statusEl = document.getElementById('cookies-status');
+    statusEl.innerHTML = `<i class="bi bi-arrow-clockwise spin"></i> 授权中...`;
+
+    try {
+        const response = await fetch(`/api/download/authorize-cookies?browser=${browser}`, {
+            method: 'POST'
+        });
+        const result = await response.json();
+
+        if (result.success) {
+            statusEl.innerHTML = `<i class="bi bi-check-circle text-success"></i> ${result.message}`;
+            setTimeout(checkCookiesStatus, 1000);
+        } else {
+            statusEl.innerHTML = `<i class="bi bi-x-circle text-danger"></i> ${result.message}`;
+        }
+    } catch (error) {
+        statusEl.innerHTML = `<i class="bi bi-x-circle text-danger"></i> 授权失败: ${error.message}`;
+    }
+}
+
+// 监听浏览器选择变化
+document.getElementById('cookies-browser')?.addEventListener('change', checkCookiesStatus);
+
+async function handleDownload(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const loading = document.getElementById('loading');
+    const resultArea = document.getElementById('result-area');
+    const submitBtn = document.getElementById('submit-btn');
+
+    // Show loading
+    loading.classList.remove('d-none');
+    submitBtn.disabled = true;
+    resultArea.innerHTML = '';
+
+    // Collect form data
+    const data = {
+        url: form.url.value,
+        quality: form.quality.value,
+        format_type: form.format_type.value,
+        audio_format: form.audio_format?.value || 'mp3',
+        subtitles: document.getElementById('subtitles-hidden').value === 'true',
+        sub_langs: form.sub_langs?.value || 'en,zh',
+        cookies_browser: form.cookies_browser?.value || 'chrome'
+    };
+
+    try {
+        const response = await fetch('/api/download/start', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data)
+        });
+
+        const result = await response.json();
+
+        if (result.success) {
+            resultArea.innerHTML = `
+                <div class="alert alert-success mt-3">
+                    <i class="bi bi-check-circle me-2"></i>
+                    <strong>下载已开始</strong><br>
+                    <small>任务 ID: ${result.data.task_id}</small>
+                </div>
+            `;
+            // Start polling for progress
+            pollProgress(result.data.task_id);
+        } else {
+            resultArea.innerHTML = `
+                <div class="alert alert-danger mt-3">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    <strong>请求失败</strong><br>
+                    ${result.message}
+                </div>
+            `;
+        }
+    } catch (error) {
+        resultArea.innerHTML = `
+            <div class="alert alert-danger mt-3">
+                <i class="bi bi-exclamation-triangle me-2"></i>
+                <strong>请求失败，请稍后重试</strong><br>
+                <small>${error.message}</small>
+            </div>
+        `;
+    } finally {
+        loading.classList.add('d-none');
+        submitBtn.disabled = false;
+    }
+}
+
+async function pollProgress(taskId) {
+    const resultArea = document.getElementById('result-area');
+
+    try {
+        const response = await fetch(`/api/download/progress/${taskId}`);
+        const progress = await response.json();
+
+        if (progress.status === 'completed') {
+            resultArea.innerHTML = `
+                <div class="alert alert-success mt-3">
+                    <i class="bi bi-check-circle me-2"></i>
+                    <strong>下载完成</strong><br>
+                    ${progress.filename || '文件已保存'}
+                </div>
+            `;
+        } else if (progress.status === 'failed') {
+            resultArea.innerHTML = `
+                <div class="alert alert-danger mt-3">
+                    <i class="bi bi-exclamation-triangle me-2"></i>
+                    <strong>下载失败</strong><br>
+                    ${progress.error || '未知错误'}
+                </div>
+            `;
+        } else if (progress.status === 'downloading') {
+            resultArea.innerHTML = `
+                <div class="alert alert-info mt-3">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>下载中...</span>
+                        <span>${progress.progress.toFixed(1)}%</span>
+                    </div>
+                    <div class="progress" style="height: 20px;">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated"
+                             style="width: ${progress.progress}%"></div>
+                    </div>
+                </div>
+            `;
+            setTimeout(() => pollProgress(taskId), 1000);
+        }
+    } catch (error) {
+        console.error('Progress poll error:', error);
     }
 }
 </script>

@@ -10,11 +10,16 @@ from fastapi.responses import HTMLResponse
 import uvicorn
 
 from .config import (
-    HOST, PORT, RELOAD, CORS_ORIGINS,
-    BASE_DIR, DOWNLOAD_DIR,
+    HOST, PORT, RELOAD, CORS_ORIGINS, CORS_ALLOW_CREDENTIALS,
+    CORS_ALLOW_METHODS, CORS_ALLOW_HEADERS, BASE_DIR, DOWNLOAD_DIR,
 )
 from .api import download_router, history_router, stats_router, formats_router
 from .models import ApiResponse
+from .security import api_key_middleware, rate_limit_middleware
+from .utils import BingoLogger
+
+# Initialize logger
+logger = BingoLogger.get_logger('bingo_downloader_web', log_file='web')
 
 # Create FastAPI app
 app = FastAPI(
@@ -25,13 +30,18 @@ app = FastAPI(
     redoc_url="/api/redoc"
 )
 
-# CORS middleware
+# Apply security middlewares
+# Order matters: rate limit first, then API key auth
+app = rate_limit_middleware(app)
+app = api_key_middleware(app)
+
+# CORS middleware - more restrictive by default
 app.add_middleware(
     CORSMiddleware,
     allow_origins=CORS_ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
+    allow_credentials=CORS_ALLOW_CREDENTIALS,
+    allow_methods=CORS_ALLOW_METHODS,
+    allow_headers=CORS_ALLOW_HEADERS,
 )
 
 # Mount static files and templates
@@ -52,6 +62,7 @@ app.include_router(formats_router)
 @app.get("/", response_class=HTMLResponse)
 async def root(request: Request):
     """Render main page"""
+    logger.debug("Root endpoint accessed")
     return templates.TemplateResponse(
         "index.html",
         {
@@ -72,6 +83,7 @@ async def root(request: Request):
 @app.get("/health", response_model=ApiResponse)
 async def health_check():
     """Health check endpoint"""
+    logger.info("Health check endpoint accessed")
     return ApiResponse(
         success=True,
         message="Bingo Downloader Web is running",
@@ -85,6 +97,7 @@ async def health_check():
 # Run server
 def run():
     """Run the development server"""
+    logger.info(f"Starting Bingo Downloader Web server on {HOST}:{PORT}")
     uvicorn.run(
         "web.backend.main:app",
         host=HOST,

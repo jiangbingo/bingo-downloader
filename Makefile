@@ -57,10 +57,32 @@ install-mcp:
 # Install Skills
 .PHONY: install-skill
 install-skill:
-	@echo "Installing Skills..."
+	@echo "Installing Skills to all supported AI IDEs..."
+	@echo ""
+	@# Cursor
 	@mkdir -p ~/.cursor/skills/bingo-downloader
 	@cp skill/SKILL.md ~/.cursor/skills/bingo-downloader/
-	@echo "✓ Skills installed to ~/.cursor/skills/bingo-downloader/"
+	@echo "✓ Cursor: ~/.cursor/skills/bingo-downloader/"
+	@# Windsurf (Codeium)
+	@mkdir -p ~/.windsurf/skills/bingo-downloader 2>/dev/null || true
+	@cp skill/SKILL.md ~/.windsurf/skills/bingo-downloader/ 2>/dev/null || true
+	@echo "✓ Windsurf: ~/.windsurf/skills/bingo-downloader/"
+	@# Continue (VS Code extension)
+	@mkdir -p ~/.continue/skills/bingo-downloader 2>/dev/null || true
+	@cp skill/SKILL.md ~/.continue/skills/bingo-downloader/ 2>/dev/null || true
+	@echo "✓ Continue: ~/.continue/skills/bingo-downloader/"
+	@# Cline (VS Code extension)
+	@mkdir -p ~/.cline/skills/bingo-downloader 2>/dev/null || true
+	@cp skill/SKILL.md ~/.cline/skills/bingo-downloader/ 2>/dev/null || true
+	@echo "✓ Cline: ~/.cline/skills/bingo-downloader/"
+	@# Roo Code (VS Code extension)
+	@mkdir -p ~/.roocode/skills/bingo-downloader 2>/dev/null || true
+	@cp skill/SKILL.md ~/.roocode/skills/bingo-downloader/ 2>/dev/null || true
+	@echo "✓ Roo Code: ~/.roocode/skills/bingo-downloader/"
+	@echo ""
+	@echo "✅ Skills installed to all supported AI IDEs!"
+	@echo ""
+	@echo "Note: Restart your AI IDE for changes to take effect."
 	@echo ""
 
 # Install Web UI
@@ -70,11 +92,17 @@ install-web:
 	@which uv || (echo "✗ uv not found. Install with: curl -LsSf https://astral.sh/uv/install.sh | sh" && exit 1)
 	@echo "Creating virtual environment in web/backend/.venv..."
 	@cd web/backend && uv venv .venv
+	@echo "✓ Virtual environment created: web/backend/.venv/"
 	@echo "Installing dependencies..."
 	@cd web/backend && uv pip install -r requirements.txt
-	@echo "✓ Web UI dependencies installed"
+	@echo "✓ Web UI dependencies installed to web/backend/.venv/"
 	@echo ""
-	@echo "Run with: make run-web"
+	@echo "════════════════════════════════════════════════════════════════"
+	@echo "  Next Steps:"
+	@echo "════════════════════════════════════════════════════════════════"
+	@echo "  From project root:  make run-web"
+	@echo "  From web/backend/:   make run   (or use ./run.sh)"
+	@echo "════════════════════════════════════════════════════════════════"
 	@echo ""
 
 # Build
@@ -93,25 +121,63 @@ dev:
 .PHONY: run-web
 run-web:
 	@echo "Starting Web UI server..."
-	@cd web && uv run uvicorn backend.main:app --host 0.0.0.0 --port 8000
+	@cd web && PYTHONPATH=$(PWD) backend/.venv/bin/python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000
 
 # Run Web UI in dev mode
 .PHONY: dev-web
 dev-web:
 	@echo "Starting Web UI in dev mode..."
-	@cd web && uv run uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
+	@cd web && PYTHONPATH=$(PWD) backend/.venv/bin/python -m uvicorn backend.main:app --host 0.0.0.0 --port 8000 --reload
 
 # Test
 .PHONY: test
-test:
+test: test-mcp test-web
+	@echo ""
+	@echo "✓ All tests complete"
+
+# Test MCP Server
+.PHONY: test-mcp
+test-mcp:
 	@echo "Running MCP Server tests..."
 	@cd mcp && npm test
+
+# Test MCP Server with coverage
+.PHONY: test-mcp-coverage
+test-mcp-coverage:
+	@echo "Running MCP Server tests with coverage..."
+	@cd mcp && npm run test:coverage
+
+# Test MCP Server with UI
+.PHONY: test-mcp-ui
+test-mcp-ui:
+	@echo "Running MCP Server tests with UI..."
+	@cd mcp && npm run test:ui
+
+# Test MCP Server in watch mode
+.PHONY: test-mcp-watch
+test-mcp-watch:
+	@echo "Running MCP Server tests in watch mode..."
+	@cd mcp && npm run test:watch
 
 # Test Web UI
 .PHONY: test-web
 test-web:
 	@echo "Running Web UI tests..."
-	@cd web && pytest -v || echo "Tests not set up yet"
+	@cd web/backend && .venv/bin/pytest tests/ -v
+
+# Test Web UI with coverage
+.PHONY: test-web-coverage
+test-web-coverage:
+	@echo "Running Web UI tests with coverage..."
+	@cd web/backend && .venv/bin/pytest tests/ -v --cov=. --cov-report=html --cov-report=term
+
+# Test coverage for all
+.PHONY: test-coverage
+test-coverage: test-mcp-coverage test-web-coverage
+	@echo ""
+	@echo "✓ Coverage reports generated"
+	@echo "MCP coverage: mcp/coverage/"
+	@echo "Web coverage: web/backend/htmlcov/"
 
 # Check dependencies
 .PHONY: check
@@ -128,11 +194,11 @@ test-download:
 	@echo "Downloading test videos..."
 	@mkdir -p tests/samples
 	@echo "Downloading YouTube test video..."
-	@cd tests/samples && yt-dlp --newline --no-color -f "b" --max-filesize 10M -o "youtube_test.%(ext)s" "https://www.youtube.com/watch?v=jNQXAC9IVRw" || echo "  ✗ YouTube download failed (may need VPN or cookies)"
+	@(cd tests/samples && yt-dlp --newline --no-color -f "b" --max-filesize 10M -o "youtube_test.%(ext)s" "https://www.youtube.com/watch?v=jNQXAC9IVRw" && ls -lh) || echo "  ✗ YouTube download failed (may need VPN or cookies)"
 	@echo ""
 	@echo "✓ Test download complete!"
 	@echo "Samples saved to: tests/samples/"
-	@ls -lh tests/samples/ 2>/dev/null | tail -n +2 || echo "  No samples downloaded"
+	@ls -lh tests/samples/ 2>/dev/null | tail -n +2 || echo "  (No samples directory)"
 	@echo ""
 	@echo "Tip: Use with your own URL:"
 	@echo "  yt-dlp -f b \"YOUR_URL\" -o downloads/video.%(ext)s"
@@ -145,8 +211,7 @@ test-download-url:
 	mkdir -p tests/samples; \
 	echo ""; \
 	echo "Downloading from: $$url"; \
-	cd tests/samples && yt-dlp --newline -f "b" -o "custom_test.%(ext)s" "$$url" || echo "  ✗ Download failed"; \
-	ls -lh tests/samples/
+	(cd tests/samples && yt-dlp --newline -f "b" -o "custom_test.%(ext)s" "$$url" && ls -lh) || echo "  ✗ Download failed"
 
 # Clean test samples
 .PHONY: clean-test
@@ -207,8 +272,18 @@ clean: clean-test
 # Uninstall
 .PHONY: uninstall
 uninstall:
-	@echo "Uninstalling Skills..."
+	@echo "Uninstalling Skills from all AI IDEs..."
 	@rm -rf ~/.cursor/skills/bingo-downloader
-	@echo "✓ Skills uninstalled"
+	@echo "✓ Cursor: removed"
+	@rm -rf ~/.windsurf/skills/bingo-downloader 2>/dev/null || true
+	@echo "✓ Windsurf: removed"
+	@rm -rf ~/.continue/skills/bingo-downloader 2>/dev/null || true
+	@echo "✓ Continue: removed"
+	@rm -rf ~/.cline/skills/bingo-downloader 2>/dev/null || true
+	@echo "✓ Cline: removed"
+	@rm -rf ~/.roocode/skills/bingo-downloader 2>/dev/null || true
+	@echo "✓ Roo Code: removed"
+	@echo ""
+	@echo "✅ Skills uninstalled from all AI IDEs"
 	@echo ""
 	@echo "Note: To uninstall MCP Server, remove it from your claude_desktop_config.json"
