@@ -5,9 +5,6 @@ site_url: https://jiangbingo.github.io/bingo-downloader/
 repo_url: https://github.com/jiangbingo/bingo-downloader
 repo_name: jiangbingo/bingo-downloader
 
-# Docs directory (explicit since config is in the docs dir)
-docs_dir: .
-
 # Navigation
 nav:
   - Home:
