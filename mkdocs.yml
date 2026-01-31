@@ -62,7 +62,7 @@ plugins:
         - zh
   - minify
   - git-revision-date-localized:
-      type: time
+      type: datetime
       timezone: Asia/Shanghai
       locale: en
       fallback_to_build_date: true
